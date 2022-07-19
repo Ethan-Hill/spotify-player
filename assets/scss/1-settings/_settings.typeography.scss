@@ -1,0 +1,61 @@
+:root {
+  --text-base-size: 1rem; // body font-size
+  --text-scale-ratio: 1.2; // multiplier used to generate the scale values 👇
+}
+
+:root,
+* {
+  // type scale
+
+  --text-xs: calc(0.75 * var(--text-base-size) * var(--text-scale-ratio));
+  --text-sm: calc(0.875 * var(--text-unit) * var(--text-scale-ratio));
+  --text-base: calc(1.125 * var(--text-unit) * var(--text-scale-ratio));
+  --text-md: calc(1.375 * var(--text-unit) * var(--text-scale-ratio));
+  --text-lg: calc(1.75 * var(--text-base-size) * var(--text-scale-ratio));
+  --text-xl: calc(2.1875 * var(--text-base-size) * var(--text-scale-ratio));
+  --text-xxl: calc(2.75 * var(--text-base-size) * var(--text-scale-ratio));
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+}
+
+.text-sm {
+  font-size: var(--text-sm);
+}
+
+.text-base {
+  font-size: var(--text-base-size, 1em);
+}
+
+.text-md {
+  font-size: var(--text-md);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+}
+
+.text-xl {
+  font-size: var(--text-xl);
+}
+
+.text-xxl {
+  font-size: var(--text-xxl);
+}
+
+.font-w {
+  &-bold {
+    font-weight: bold;
+  }
+}
+
+h1 {
+  font-size: var(--text-xxl);
+  font-weight: bolder;
+}
+
+h2 {
+  font-size: var(--text-xl);
+  font-weight: bold;
+}

@@ -1,0 +1,13 @@
+.flex {
+  display: flex;
+
+  // Flex Direction
+
+  &-col {
+    flex-direction: column;
+  }
+
+  &-row {
+    flex-direction: row;
+  }
+}
