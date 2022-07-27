@@ -11,6 +11,7 @@ import "../assets/scss/main.scss";
 import { AsideNav } from "../components/Aside/Drawer";
 import { MenuItem } from "../components/Aside/Item";
 import { MusicNoteIcon } from "../components/SVG/MusicNoteIcon";
+import { useEffect } from "react";
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -19,11 +20,15 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <GlobalStyle />
         <SessionProvider session={session}>
           <DefaultSeo {...SEO} />
-          <AsideNav>
-            <MenuItem label="Player" href="/dashboard/player">
-              <MusicNoteIcon />
-            </MenuItem>
-          </AsideNav>
+
+          {session ? (
+            <AsideNav>
+              <MenuItem label="Player" href="/dashboard/player">
+                <MusicNoteIcon />
+              </MenuItem>
+            </AsideNav>
+          ) : null}
+
           <Component {...pageProps} />
         </SessionProvider>
       </ThemeProvider>
