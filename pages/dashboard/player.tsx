@@ -21,14 +21,22 @@ const Player: NextPage = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      currentPlaybackState(session?.accessToken as string).then((state) => {
-        if (state) {
-          setIsPlaying(true);
+      currentPlaybackState(session?.accessToken as string).then((response) => {
+        console.log(response);
+
+        if (typeof response === "boolean") {
+          if (response) {
+            setIsPlaying(true);
+          } else {
+            setIsPlaying(false);
+          }
         } else {
-          setIsPlaying(false);
+          const { status, message } = response;
+
+          console.log(message, status);
         }
       });
-    }, 1000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }),
