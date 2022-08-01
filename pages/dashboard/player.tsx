@@ -22,8 +22,6 @@ const Player: NextPage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       currentPlaybackState(session?.accessToken as string).then((response) => {
-        console.log(response);
-
         if (typeof response === "boolean") {
           if (response) {
             setIsPlaying(true);

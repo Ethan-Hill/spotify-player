@@ -11,7 +11,6 @@ import "../assets/scss/main.scss";
 import { AsideNav } from "../components/Aside/Drawer";
 import { MenuItem } from "../components/Aside/Item";
 import { MusicNoteIcon } from "../components/SVG/MusicNoteIcon";
-import { useEffect } from "react";
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
