@@ -1,7 +1,10 @@
 export const CurrentlyPlayingStateHandler = (res: Response) => {
   switch (res.status) {
     case 200:
-      return res.json().then((data) => Promise.resolve(data));
+      return res
+        .json()
+        .then((data) => Promise.resolve(data))
+        .catch((err) => Promise.reject(err));
 
     case 401:
       return { message: "Token has expired", status: res.status };

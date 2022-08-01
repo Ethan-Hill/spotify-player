@@ -6,10 +6,12 @@ export const fetcher = (url: string, sessionToken: string) =>
     headers: {
       Authorization: `Bearer ${sessionToken}`,
     },
-  }).then((res) => {
-    if (res.status === 401) {
-      return signOut();
-    }
+  })
+    .then((res) => {
+      if (res.status === 401) {
+        return signOut();
+      }
 
-    return res.json();
-  });
+      return res.json();
+    })
+    .catch((err) => Promise.reject(err));

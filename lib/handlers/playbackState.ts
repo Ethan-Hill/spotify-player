@@ -1,7 +1,10 @@
 export const PlaybackStateHandler = (res: Response): any => {
   switch (res.status) {
     case 200:
-      return res.json().then((data) => Promise.resolve(data.is_playing));
+      return res
+        .json()
+        .then((data) => Promise.resolve(data.is_playing))
+        .catch((err) => Promise.reject(err));
 
     case 204:
       return { message: "Playback not available", status: res.status };
