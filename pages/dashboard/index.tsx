@@ -17,7 +17,6 @@ const Dashboard: NextPage = () => {
       </Head>
 
       <main className="center h-100 flex flex-col">
-        <p className="text-center">{JSON.stringify(session)}</p>
         <div className="center flex-col my-lg">
           <Avatar
             avatarSrc={session?.user?.image as string}
