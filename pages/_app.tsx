@@ -11,14 +11,23 @@ import "../assets/scss/main.scss";
 import { AsideNav } from "../components/Aside/Drawer";
 import { MenuItem } from "../components/Aside/Item";
 import { MusicNoteIcon } from "../components/SVG/MusicNoteIcon";
+import { ArrowLeft } from "../components/SVG/Common/ArrowLeft";
+import { BackButton } from "../components/Shared/Back";
+import { useRouter } from "next/router";
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  const router = useRouter();
+
   return (
     <>
       <ThemeProvider theme={spotifyTheme}>
         <GlobalStyle />
         <SessionProvider session={session}>
           <DefaultSeo {...SEO} />
+
+          <BackButton action={() => router.push("/dashboard")}>
+            <ArrowLeft />
+          </BackButton>
 
           {session ? (
             <AsideNav>

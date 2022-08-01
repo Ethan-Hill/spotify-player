@@ -1,82 +1,47 @@
 import type { GetServerSideProps, NextPage } from "next";
-import { useEffect, useState } from "react";
 
 import { useSession, getSession } from "next-auth/react";
 
 import Head from "next/head";
-import { PlayerItem } from "../../components/Player/Controls/Play";
-import { PlayerMenu } from "../../components/Player/PlayerMenu";
-import { PlayIcon } from "../../components/SVG/Player/PlayIcon";
-import { PauseIcon } from "../../components/SVG/Player/PauseIcon";
 
-import {
-  pausePlayback,
-  resumePlayback,
-  currentPlaybackState,
-} from "../../lib/spotify";
+import useSWR, { SWRResponse } from "swr";
+
+import { fetcher } from "../../lib/fetcher";
+import { PlayerData } from "../../types/playerData";
+import { PlayerMenu } from "../../components/Player/PlayerMenu";
+import { TogglePlayback } from "../../components/Group/TogglePlayback";
 
 const Player: NextPage = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const { data: session } = useSession();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      currentPlaybackState(session?.accessToken as string).then((response) => {
-        if (typeof response === "boolean") {
-          if (response) {
-            setIsPlaying(true);
-          } else {
-            setIsPlaying(false);
-          }
-        } else {
-          const { status, message } = response;
-
-          console.log(message, status);
-        }
-      });
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }),
-    [isPlaying];
-
-  const playAction = () => {
-    resumePlayback(session?.accessToken as string).then(async () => {
-      await currentPlaybackState(session?.accessToken as string).then(
-        (isPlaying) => setIsPlaying(isPlaying)
-      );
-    });
-  };
-
-  const pauseAction = async () => {
-    pausePlayback(session?.accessToken as string).then(async () => {
-      await currentPlaybackState(session?.accessToken as string).then(
-        (isPlaying) => setIsPlaying(isPlaying)
-      );
-    });
-  };
-
-  return (
-    <>
-      <Head>
-        <title>Home</title>
-      </Head>
-
-      <main className="center h-100">
-        <PlayerMenu>
-          {!isPlaying ? (
-            <PlayerItem action={playAction}>
-              <PlayIcon />
-            </PlayerItem>
-          ) : (
-            <PlayerItem action={pauseAction}>
-              <PauseIcon />
-            </PlayerItem>
-          )}
-        </PlayerMenu>
-      </main>
-    </>
+  const SWRData: SWRResponse<PlayerData> = useSWR(
+    ["https://api.spotify.com/v1/me/player", session!.accessToken],
+    fetcher,
+    {
+      refreshInterval: 5000,
+    }
   );
+
+  if (session && SWRData.data?.item) {
+    const playerData = SWRData.data;
+
+    return (
+      <>
+        <Head>
+          <title>Home</title>
+        </Head>
+
+        <main className="center h-100">
+          <div>{playerData.item.name}</div>
+
+          <PlayerMenu>
+            <TogglePlayback session={session} playerData={playerData} />
+          </PlayerMenu>
+        </main>
+      </>
+    );
+  }
+  return <div>No player available</div>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

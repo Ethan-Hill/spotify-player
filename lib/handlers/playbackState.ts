@@ -1,4 +1,4 @@
-export const PlaybackStateHandler = (res: Response) => {
+export const PlaybackStateHandler = (res: Response): any => {
   switch (res.status) {
     case 200:
       return res.json().then((data) => Promise.resolve(data.is_playing));

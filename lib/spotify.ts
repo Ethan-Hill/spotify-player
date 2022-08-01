@@ -3,6 +3,8 @@ import { PausePlaybackHandler } from "./handlers/pausePlayback";
 import { PlaybackStateHandler } from "./handlers/playbackState";
 import { ResumePlaybackHandler } from "./handlers/resumePlayback";
 
+import { signOut } from "next-auth/react";
+
 export const currentlyPlayingSong = async (token: string) => {
   return fetch("https://api.spotify.com/v1/me/player/currently-playing", {
     headers: {
@@ -23,7 +25,13 @@ export const pausePlayback = async (token: string) => {
     },
   })
     .then((res) => {
-      return PausePlaybackHandler(res);
+      const result = PausePlaybackHandler(res);
+
+      if (result.status === 401) {
+        return signOut();
+      }
+
+      return result;
     })
     .catch((err) => Promise.reject(err));
 };
@@ -36,7 +44,13 @@ export const resumePlayback = async (token: string) => {
     },
   })
     .then((res) => {
-      return ResumePlaybackHandler(res);
+      const result = ResumePlaybackHandler(res);
+
+      if (result.status === 401) {
+        return signOut();
+      }
+
+      return result;
     })
     .catch((err) => Promise.reject(err));
 };
@@ -49,7 +63,15 @@ export const currentPlaybackState = async (token: string) => {
     },
   })
     .then((res) => {
-      return PlaybackStateHandler(res);
+      const result = PlaybackStateHandler(res);
+
+      if (result?.status) {
+        if (result.status === 401) {
+          return signOut();
+        }
+      }
+
+      return result;
     })
     .catch((err) => Promise.reject(err));
 };

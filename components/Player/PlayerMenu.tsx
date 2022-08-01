@@ -7,10 +7,11 @@ const Player = styled.nav`
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  min-width: 100vw;
+  width: calc((100vw - (100vw - 100%)) - var(--aside-width));
+  max-width: 100%;
   position: fixed;
   bottom: 0px;
-  left: 0px;
+  right: 0px;
   min-height: 70px;
   background-color: #262626;
   z-index: 99;
