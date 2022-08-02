@@ -10,6 +10,7 @@ import { fetcher } from "../../lib/fetcher";
 import { PlayerData } from "../../types/playerData";
 import { PlayerMenu } from "../../components/Player/PlayerMenu";
 import { TogglePlayback } from "../../components/Group/TogglePlayback";
+import { PlayerInfo } from "../../components/Player/PlayerInfomaton";
 
 const Player: NextPage = () => {
   const { data: session } = useSession();
@@ -31,13 +32,12 @@ const Player: NextPage = () => {
           <title>Home</title>
         </Head>
 
-        <main className="center h-100">
+        <main className="center h-100-player">
           <div>
-            <div>
-              <img
+            <div className="center mb-md">
+              <PlayerInfo
                 src={playerData.item.album.images[0].url}
                 alt="album"
-                className=""
               />
             </div>
 

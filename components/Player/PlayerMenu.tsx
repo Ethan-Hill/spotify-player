@@ -12,7 +12,7 @@ const Player = styled.nav`
   position: fixed;
   bottom: 0px;
   right: 0px;
-  min-height: 70px;
+  min-height: var(--player-menu-height);
   background-color: #262626;
   z-index: 99;
 `;
