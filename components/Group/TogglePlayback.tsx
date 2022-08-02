@@ -17,12 +17,10 @@ export const TogglePlayback = ({ session, playerData }: Props) => {
 
   const playAction = () => {
     resumePlayback(session!.accessToken);
-    mutate("https://api.spotify.com/v1/me/player/play");
   };
 
   const pauseAction = async () => {
     pausePlayback(session!.accessToken);
-    mutate("https://api.spotify.com/v1/me/player/pause");
   };
 
   return (

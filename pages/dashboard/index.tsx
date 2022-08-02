@@ -3,7 +3,7 @@ import { ActionButton } from "../../components/Shared/Button";
 import { Link } from "../../components/Shared/Link";
 
 import { Avatar } from "../../components/User/Avatar";
-import { useSession, signIn, signOut, getSession } from "next-auth/react";
+import { useSession, signOut, getSession } from "next-auth/react";
 
 import Head from "next/head";
 

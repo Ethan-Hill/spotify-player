@@ -32,7 +32,17 @@ const Player: NextPage = () => {
         </Head>
 
         <main className="center h-100">
-          <div>{playerData.item.name}</div>
+          <div>
+            <div>
+              <img
+                src={playerData.item.album.images[0].url}
+                alt="album"
+                className=""
+              />
+            </div>
+
+            <p>{playerData.item.name}</p>
+          </div>
 
           <PlayerMenu>
             <TogglePlayback session={session} playerData={playerData} />
