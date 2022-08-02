@@ -13,7 +13,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   ```
   # - Notes -
   - This will not work without all of these variables defined.
-  - You will need a spotify application to get the SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET, you can make one [here](https://developer.spotify.com/dashboard/).
+  - You will need a spotify application to get the SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET .
+    You can make one [here](https://developer.spotify.com/dashboard/).
 
 First, run the development server:
 
