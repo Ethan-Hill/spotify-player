@@ -11,7 +11,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   SECRET=
   JWT_SCERET=
   ```
-  - Note - This will not work without all of these variables defined.
+  # - Notes -
+  - This will not work without all of these variables defined.
+  - You will need a spotify application to get the SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET, you can make one ['here']("https://developer.spotify.com/dashboard/").
 
 First, run the development server:
 
