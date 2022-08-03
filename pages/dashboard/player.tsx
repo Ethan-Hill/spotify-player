@@ -55,7 +55,11 @@ const Player: NextPage = () => {
       </>
     );
   }
-  return <div>No player available</div>;
+  return (
+    <div className="h-100 center">
+      <p>No player available</p>
+    </div>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

@@ -1,17 +1,23 @@
 :root {
-  --text-base-size: 1vw; // body font-size
+  --text-base-size: 1vw;
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: $breakpoint-lg) {
+    --text-base-size: 1.5vw;
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    --text-base-size: 2vw;
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
     --text-base-size: 2.5vw;
   }
 
-  --text-scale-ratio: 1; // multiplier used to generate the scale values 👇
+  --text-scale-ratio: 1;
 }
 
 :root,
 * {
-  // type scale
-
   --text-xs: calc(0.75 * var(--text-base-size) * var(--text-scale-ratio));
   --text-sm: calc(0.875 * var(--text-base-size) * var(--text-scale-ratio));
   --text-base: calc(1.125 * var(--text-base-size) * var(--text-scale-ratio));
