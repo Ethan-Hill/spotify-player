@@ -19,7 +19,7 @@ const Player: NextPage = () => {
     ["https://api.spotify.com/v1/me/player", session!.accessToken],
     fetcher,
     {
-      refreshInterval: 5000,
+      refreshInterval: 2500,
     }
   );
 
@@ -41,6 +41,10 @@ const Player: NextPage = () => {
               />
             </div>
 
+            <h1>{playerData.item.name}</h1>
+            <h2>{playerData.item.name}</h2>
+            <h3>{playerData.item.name}</h3>
+            <h4>{playerData.item.name}</h4>
             <p>{playerData.item.name}</p>
           </div>
 

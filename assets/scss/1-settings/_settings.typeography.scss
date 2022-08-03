@@ -1,6 +1,11 @@
 :root {
-  --text-base-size: 1rem; // body font-size
-  --text-scale-ratio: 1.2; // multiplier used to generate the scale values 👇
+  --text-base-size: 1vw; // body font-size
+
+  @media screen and (max-width: 750px) {
+    --text-base-size: 2.5vw;
+  }
+
+  --text-scale-ratio: 1; // multiplier used to generate the scale values 👇
 }
 
 :root,
@@ -8,9 +13,9 @@
   // type scale
 
   --text-xs: calc(0.75 * var(--text-base-size) * var(--text-scale-ratio));
-  --text-sm: calc(0.875 * var(--text-unit) * var(--text-scale-ratio));
-  --text-base: calc(1.125 * var(--text-unit) * var(--text-scale-ratio));
-  --text-md: calc(1.375 * var(--text-unit) * var(--text-scale-ratio));
+  --text-sm: calc(0.875 * var(--text-base-size) * var(--text-scale-ratio));
+  --text-base: calc(1.125 * var(--text-base-size) * var(--text-scale-ratio));
+  --text-md: calc(1.375 * var(--text-base-size) * var(--text-scale-ratio));
   --text-lg: calc(1.75 * var(--text-base-size) * var(--text-scale-ratio));
   --text-xl: calc(2.1875 * var(--text-base-size) * var(--text-scale-ratio));
   --text-xxl: calc(2.75 * var(--text-base-size) * var(--text-scale-ratio));
@@ -58,4 +63,19 @@ h1 {
 h2 {
   font-size: var(--text-xl);
   font-weight: bold;
+}
+
+h3 {
+  font-size: var(--text-lg);
+  font-weight: bold;
+}
+
+h4 {
+  font-size: var(--text-md);
+  font-weight: bold;
+}
+
+p {
+  font-size: var(--text-base);
+  font-weight: normal;
 }
