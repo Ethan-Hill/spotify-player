@@ -4,17 +4,14 @@ import { PlayIcon } from "../SVG/Player/PlayIcon";
 
 import { pausePlayback, resumePlayback } from "../../lib/spotify";
 import { Session } from "next-auth";
-import { PlayerData } from "../../types/playerData";
-import { useSWRConfig } from "swr";
+import { SpotifyPlayerDataType } from "../../types/spotify";
 
 type Props = {
   session: Session;
-  playerData: PlayerData;
+  playerData: SpotifyPlayerDataType;
 };
 
 export const TogglePlayback = ({ session, playerData }: Props) => {
-  const { mutate } = useSWRConfig();
-
   const playAction = () => {
     resumePlayback(session!.accessToken);
   };

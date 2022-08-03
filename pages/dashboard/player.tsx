@@ -7,15 +7,15 @@ import Head from "next/head";
 import useSWR, { SWRResponse } from "swr";
 
 import { fetcher } from "../../lib/fetcher";
-import { PlayerData } from "../../types/playerData";
 import { PlayerMenu } from "../../components/Player/PlayerMenu";
 import { TogglePlayback } from "../../components/Group/TogglePlayback";
 import { PlayerInfo } from "../../components/Player/PlayerInfomaton";
+import { SpotifyPlayerDataType } from "../../types/spotify";
 
 const Player: NextPage = () => {
   const { data: session } = useSession();
 
-  const SWRData: SWRResponse<PlayerData> = useSWR(
+  const SWRData: SWRResponse<SpotifyPlayerDataType> = useSWR(
     ["https://api.spotify.com/v1/me/player", session!.accessToken],
     fetcher,
     {
