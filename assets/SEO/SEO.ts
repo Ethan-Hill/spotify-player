@@ -1,4 +1,5 @@
 export default {
+  description: "Manage spotify data and playack",
   openGraph: {
     type: "website",
     locale: "en_IE",

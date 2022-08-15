@@ -14,12 +14,17 @@ import { MusicNoteIcon } from "../components/SVG/MusicNoteIcon";
 import { ArrowLeft } from "../components/SVG/Common/ArrowLeft";
 import { BackButton } from "../components/Shared/Back";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
 
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
       <ThemeProvider theme={spotifyTheme}>
         <GlobalStyle />
         <SessionProvider session={session}>

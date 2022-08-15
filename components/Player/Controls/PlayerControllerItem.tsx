@@ -30,8 +30,8 @@ const PlayerActionIcon = styled.div`
   }
 `;
 
-export const PlayerItem = ({ action, ...props }: any) => (
-  <PlayerAction onClick={action}>
+export const PlayerControllerItem = ({ action, ariaLabel, ...props }: any) => (
+  <PlayerAction aria-label={ariaLabel} onClick={action}>
     <PlayerActionIcon>{props.children}</PlayerActionIcon>
   </PlayerAction>
 );

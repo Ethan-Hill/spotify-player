@@ -11,6 +11,8 @@ import { PlayerMenu } from "../../components/Player/PlayerMenu";
 import { TogglePlayback } from "../../components/Group/TogglePlayback";
 import { PlayerInfo } from "../../components/Player/PlayerInfomaton";
 import { SpotifyPlayerDataType } from "../../types/spotify";
+import { NextPlayback } from "../../components/Player/Controls/NextPlayback";
+import { PreviousPlayback } from "../../components/Player/Controls/PreviousPlayback";
 
 const Player: NextPage = () => {
   const { data: session } = useSession();
@@ -19,7 +21,7 @@ const Player: NextPage = () => {
     ["https://api.spotify.com/v1/me/player", session!.accessToken],
     fetcher,
     {
-      refreshInterval: 2500,
+      refreshInterval: 500,
     }
   );
 
@@ -41,15 +43,13 @@ const Player: NextPage = () => {
               />
             </div>
 
-            <h1>{playerData.item.name}</h1>
-            <h2>{playerData.item.name}</h2>
-            <h3>{playerData.item.name}</h3>
-            <h4>{playerData.item.name}</h4>
-            <p>{playerData.item.name}</p>
+            <h4 className="text-center">{playerData.item.name}</h4>
           </div>
 
           <PlayerMenu>
+            <PreviousPlayback session={session} />
             <TogglePlayback session={session} playerData={playerData} />
+            <NextPlayback session={session} />
           </PlayerMenu>
         </main>
       </>

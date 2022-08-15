@@ -7,7 +7,7 @@ const Player = styled.nav`
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  width: calc((100vw - (100vw - 100%)) - var(--aside-width));
+  width: calc((100vw - (100vw - 100%)));
   max-width: 100%;
   position: fixed;
   bottom: 0px;
@@ -15,6 +15,7 @@ const Player = styled.nav`
   min-height: var(--player-menu-height);
   background-color: #262626;
   z-index: 99;
+  column-gap: 20px;
 `;
 
 export const PlayerMenu = ({ ...props }) => <Player>{props.children}</Player>;

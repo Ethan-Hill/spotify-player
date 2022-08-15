@@ -2,8 +2,8 @@ import { CurrentlyPlayingStateHandler } from "./handlers/currentlyPlayingState";
 import { PausePlaybackHandler } from "./handlers/pausePlayback";
 import { PlaybackStateHandler } from "./handlers/playbackState";
 import { ResumePlaybackHandler } from "./handlers/resumePlayback";
-
-import { signOut } from "next-auth/react";
+import { NextPlaybackHandler } from "./handlers/nextPlayback";
+import { PreviousPlaybackHandler } from "./handlers/previousPlayback";
 
 export const currentlyPlayingSong = async (token: string) => {
   return fetch("https://api.spotify.com/v1/me/player/currently-playing", {
@@ -27,10 +27,6 @@ export const pausePlayback = async (token: string) => {
     .then((res) => {
       const result = PausePlaybackHandler(res);
 
-      if (result.status === 401) {
-        return signOut();
-      }
-
       return result;
     })
     .catch((err) => Promise.reject(err));
@@ -46,9 +42,35 @@ export const resumePlayback = async (token: string) => {
     .then((res) => {
       const result = ResumePlaybackHandler(res);
 
-      if (result.status === 401) {
-        return signOut();
-      }
+      return result;
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+export const nextPlayback = async (token: string) => {
+  return fetch("https://api.spotify.com/v1/me/player/next", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      const result = NextPlaybackHandler(res);
+
+      return result;
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+export const previousPlayback = async (token: string) => {
+  return fetch("https://api.spotify.com/v1/me/player/previous", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      const result = PreviousPlaybackHandler(res);
 
       return result;
     })
@@ -64,12 +86,6 @@ export const currentPlaybackState = async (token: string) => {
   })
     .then((res) => {
       const result = PlaybackStateHandler(res);
-
-      if (result?.status) {
-        if (result.status === 401) {
-          return signOut();
-        }
-      }
 
       return result;
     })

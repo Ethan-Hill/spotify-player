@@ -2,8 +2,8 @@ import { ImgHTMLAttributes, ReactPropTypes } from "react";
 import styled from "styled-components";
 
 const PlayerInfomation = styled.img`
-  width: 75px;
-  height: 75px;
+  width: 175px;
+  height: 175px;
   border-radius: 10px;
 `;
 

@@ -35,7 +35,7 @@ export const BackButton = ({ action, ...props }: ButtonProps) => {
     return null;
   }
   return (
-    <Default onClick={action} {...props}>
+    <Default aria-label="Go back to dashboard" onClick={action} {...props}>
       {props.children}
     </Default>
   );

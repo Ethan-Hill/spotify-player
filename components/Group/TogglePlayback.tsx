@@ -1,4 +1,4 @@
-import { PlayerItem } from "../Player/Controls/Play";
+import { PlayerControllerItem } from "../Player/Controls/PlayerControllerItem";
 import { PauseIcon } from "../SVG/Player/PauseIcon";
 import { PlayIcon } from "../SVG/Player/PlayIcon";
 
@@ -23,13 +23,13 @@ export const TogglePlayback = ({ session, playerData }: Props) => {
   return (
     <>
       {!playerData.is_playing ? (
-        <PlayerItem action={playAction}>
+        <PlayerControllerItem ariaLabel="Resume Song" action={playAction}>
           <PlayIcon />
-        </PlayerItem>
+        </PlayerControllerItem>
       ) : (
-        <PlayerItem action={pauseAction}>
+        <PlayerControllerItem ariaLabel="Pause Song" action={pauseAction}>
           <PauseIcon />
-        </PlayerItem>
+        </PlayerControllerItem>
       )}
     </>
   );
